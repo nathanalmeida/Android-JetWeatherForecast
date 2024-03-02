@@ -6,9 +6,10 @@ import com.nathan.jetweatherforecast.network.WeatherAPI
 import javax.inject.Inject
 
 class WeatherRepository @Inject constructor(private val api: WeatherAPI) {
-    suspend fun getWeather(city: String, units: String = "imperial",
-                           request: RequestState<WeatherForecast, Boolean, Exception>) {
-        request.loading = true
+    suspend fun getWeather(city: String, units: String = "imperial")
+        : RequestState<WeatherForecast, Boolean, Exception> {
+        val request: RequestState<WeatherForecast, Boolean, Exception>
+            = RequestState(null, true, null)
         try {
             request.data = api.getWeather(city, units)
         } catch (e: Exception) {
@@ -16,5 +17,7 @@ class WeatherRepository @Inject constructor(private val api: WeatherAPI) {
         } finally {
             request.loading = false
         }
+
+        return request
     }
 }
