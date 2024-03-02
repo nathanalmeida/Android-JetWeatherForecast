@@ -1,6 +1,6 @@
 package com.nathan.jetweatherforecast.model
 
-data class WeatherX(
+data class WeatherType(
     val description: String,
     val icon: String,
     val id: Int,
