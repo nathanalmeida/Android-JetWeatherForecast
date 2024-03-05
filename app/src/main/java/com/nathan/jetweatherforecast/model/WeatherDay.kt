@@ -3,7 +3,7 @@ package com.nathan.jetweatherforecast.model
 data class WeatherDay(
     val clouds: Int,
     val deg: Int,
-    val dt: Int,
+    val dt: Long,
     val feelsLike: FeelsLike,
     val gust: Double,
     val humidity: Int,

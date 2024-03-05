@@ -18,13 +18,13 @@ class MainViewModel @Inject constructor(private val repository: WeatherRepositor
     val data = _data.asStateFlow()
 
     init {
-        viewModelScope.launch {
-            getWeather("Seattle")
-        }
+        changeCity("Seattle")
     }
 
-    suspend fun getWeather(city: String) {
-        _data.value.loading = true
-        _data.value = repository.getWeather(city = city)
+    fun changeCity(city: String) {
+        viewModelScope.launch {
+            _data.value.loading = true
+            _data.value = repository.getWeather(city = city)
+        }
     }
 }
